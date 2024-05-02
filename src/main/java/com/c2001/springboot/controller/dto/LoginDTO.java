@@ -7,4 +7,5 @@ public class LoginDTO {
     private Integer id;
     private String username;
     private String email;
+    private Integer level;
 }

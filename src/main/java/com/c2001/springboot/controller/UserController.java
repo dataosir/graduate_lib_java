@@ -25,9 +25,10 @@ public class UserController {
     @PostMapping("/borrow")
     public Result borrowBookByUser(@RequestBody UserBorrowRequest userBorrowRequest){
         Boolean aBoolean =userService.borrowBookByUser(userBorrowRequest);
-        if(aBoolean)
-        return Result.success(aBoolean);
-        else return Result.error("学生信息出错");
+        if(aBoolean){
+            return Result.success(aBoolean);
+        }
+         return Result.error("学生信息出错");
     }
     @GetMapping("/page")
     public Result getUsersPage(UserPageRequest userPageRequest){
