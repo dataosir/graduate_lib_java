@@ -30,6 +30,14 @@ public class UserController {
         }
          return Result.error("学生信息出错");
     }
+    @PostMapping("/buying")
+    public Result buying(@RequestBody UserBorrowRequest userBorrowRequest)  {
+        Boolean aBoolean =userService.buying(userBorrowRequest);
+        if(aBoolean){
+            return Result.success(aBoolean);
+        }
+        return Result.error("学生信息出错");
+    }
     @GetMapping("/page")
     public Result getUsersPage(UserPageRequest userPageRequest){
         return Result.success(userService.getPage(userPageRequest));

@@ -5,6 +5,7 @@ import com.c2001.springboot.controller.request.UserPageRequest;
 import com.c2001.springboot.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface UserDao {
             "</script>")
     List<User> listByCondition(BaseRequest baseRequest);
     @Select("insert into user(name,username,age,sex,stunumber)" +
-            " values (#{name},#{username},#{age},#{sex},#{stunumber})")
+            " values (#{name},#{username},#{age},#{sex},#{stunumber},#{money})")
     void addUser(User user);
     @Select("select * from user where id = #{id}")
     User getById(Integer id);
@@ -37,4 +38,7 @@ public interface UserDao {
     void deleteById(Integer id);
     @Select("select * from user where name = #{stuname} and stunumber = #{stunumber}")
     User borrowBookByUser(String stuname, String stunumber);
+
+    @Update("update user set money #{money}  where name = #{stuname} and stunumber = #{stunumber}")
+    User buying(Long money,String stuname, String stunumber);
 }

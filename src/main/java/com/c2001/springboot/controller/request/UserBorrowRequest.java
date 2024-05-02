@@ -6,4 +6,5 @@ import lombok.Data;
 public class UserBorrowRequest {
     private String stuname;
     private String stunumber;
+    private Long price;
 }

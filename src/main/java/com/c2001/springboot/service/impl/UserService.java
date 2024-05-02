@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 @Service
 public class UserService implements IUserService {
     @Autowired
@@ -62,6 +64,18 @@ public class UserService implements IUserService {
         else {
             return true;
         }
+    }
+
+    @Override
+    public Boolean buying(UserBorrowRequest userBorrowRequest)  {
+        if (Objects.isNull(userBorrowRequest) || Objects.isNull(userBorrowRequest.getStuname())){
+            return false;
+        }
+        User bookByUser = userdao.borrowBookByUser(userBorrowRequest.getStuname(), userBorrowRequest.getStunumber());
+        Long money = bookByUser.getMoney();
+        money -= userBorrowRequest.getPrice();
+        User user = userdao.buying(money,userBorrowRequest.getStuname(),userBorrowRequest.getStunumber());
+        return true;
     }
 
 

@@ -22,4 +22,6 @@ public interface IUserService {
     void deleteUser(Integer id);
 
     Boolean borrowBookByUser(UserBorrowRequest userBorrowRequest);
+
+    Boolean buying(UserBorrowRequest userBorrowRequest) ;
 }

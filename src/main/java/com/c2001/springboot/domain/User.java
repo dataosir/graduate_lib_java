@@ -12,9 +12,10 @@ public class User {
     private String username;
     private Integer age;
     private String sex;
+    private Long money;
     private String stunumber;//学号
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GTM+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GTM+8")
     private Date createtime;
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GTM+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GTM+8")
     private Date updatetime;
 }
