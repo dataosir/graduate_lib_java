@@ -27,7 +27,7 @@ public interface UserDao {
 //            "order by id desc"+
             "</script>")
     List<User> listByCondition(BaseRequest baseRequest);
-    @Select("insert into user(name,username,age,sex,stunumber)" +
+    @Select("insert into user(name,username,age,sex,stunumber,money)" +
             " values (#{name},#{username},#{age},#{sex},#{stunumber},#{money})")
     void addUser(User user);
     @Select("select * from user where id = #{id}")

@@ -42,7 +42,7 @@ public class UserController {
     public Result getUsersPage(UserPageRequest userPageRequest){
         return Result.success(userService.getPage(userPageRequest));
     }
-    @PostMapping
+    @PostMapping("/addUser")
     public Result addUser(@RequestBody User user){
         userService.addUser(user);
         return Result.success();
