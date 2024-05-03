@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BorrowService implements IBorrowService {
@@ -25,6 +26,12 @@ public class BorrowService implements IBorrowService {
     public PageInfo<Borrow> getPage(BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPageNum(), baseRequest.getPageSize());
         List<Borrow> borrows = borrowDao.listByCondition(baseRequest);
+        borrows.forEach(e->{
+            e.setBuyedStr("否");
+            if (Objects.equals(1,e.getBuyed())){
+                e.setBuyedStr("是");
+            }
+        });
         return new PageInfo<>(borrows);
     }
 

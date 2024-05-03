@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.c2001.springboot.controller.request.BaseRequest;
 import com.c2001.springboot.controller.request.UserBorrowRequest;
+import com.c2001.springboot.dao.BorrowDao;
 import com.c2001.springboot.dao.UserDao;
 import com.c2001.springboot.domain.User;
 import com.c2001.springboot.service.IUserService;
@@ -20,6 +21,9 @@ import java.util.Objects;
 public class UserService implements IUserService {
     @Autowired
     UserDao userdao;
+
+    @Autowired
+    BorrowDao borrowDao;
 
     @Override
     public List<User> getAllUser() {
@@ -67,13 +71,17 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Boolean buying(UserBorrowRequest userBorrowRequest)  {
+    public Boolean buying(UserBorrowRequest userBorrowRequest) throws Exception {
         if (Objects.isNull(userBorrowRequest) || Objects.isNull(userBorrowRequest.getStuname())){
             return false;
         }
         User bookByUser = userdao.borrowBookByUser(userBorrowRequest.getStuname(), userBorrowRequest.getStunumber());
         Long money = bookByUser.getMoney();
         money -= userBorrowRequest.getPrice();
+        if (money < 0){
+            throw new Exception("余额不够，请联系管理员充值");
+        }
+        borrowDao.updateBuyEd();
         userdao.buying(money,userBorrowRequest.getStuname(),userBorrowRequest.getStunumber());
         return true;
     }

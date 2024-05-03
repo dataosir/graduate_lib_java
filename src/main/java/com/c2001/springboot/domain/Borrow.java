@@ -14,6 +14,8 @@ public class Borrow {
     private Integer price;
     private String stunumber;
     private String stuname;
+    private Integer buyed;
+    private String buyedStr;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GTM+8")
     private Date createtime;
 }

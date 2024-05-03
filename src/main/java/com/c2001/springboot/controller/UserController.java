@@ -31,7 +31,7 @@ public class UserController {
          return Result.error("学生信息出错");
     }
     @PostMapping("/buying")
-    public Result buying(@RequestBody UserBorrowRequest userBorrowRequest)  {
+    public Result buying(@RequestBody UserBorrowRequest userBorrowRequest) throws Exception {
         Boolean aBoolean =userService.buying(userBorrowRequest);
         if(aBoolean){
             return Result.success(aBoolean);

@@ -23,5 +23,5 @@ public interface IUserService {
 
     Boolean borrowBookByUser(UserBorrowRequest userBorrowRequest);
 
-    Boolean buying(UserBorrowRequest userBorrowRequest) ;
+    Boolean buying(UserBorrowRequest userBorrowRequest) throws Exception;
 }
