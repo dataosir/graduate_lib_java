@@ -74,7 +74,7 @@ public class UserService implements IUserService {
         User bookByUser = userdao.borrowBookByUser(userBorrowRequest.getStuname(), userBorrowRequest.getStunumber());
         Long money = bookByUser.getMoney();
         money -= userBorrowRequest.getPrice();
-        User user = userdao.buying(money,userBorrowRequest.getStuname(),userBorrowRequest.getStunumber());
+        userdao.buying(money,userBorrowRequest.getStuname(),userBorrowRequest.getStunumber());
         return true;
     }
 

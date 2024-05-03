@@ -39,6 +39,6 @@ public interface UserDao {
     @Select("select * from user where name = #{stuname} and stunumber = #{stunumber}")
     User borrowBookByUser(String stuname, String stunumber);
 
-    @Update("update user set money #{money}  where name = #{stuname} and stunumber = #{stunumber}")
-    User buying(Long money,String stuname, String stunumber);
+    @Update("update user set money= #{money}  where name = #{stuname} and stunumber = #{stunumber}")
+    Integer buying(Long money,String stuname, String stunumber);
 }
