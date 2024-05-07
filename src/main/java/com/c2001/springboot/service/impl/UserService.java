@@ -81,7 +81,6 @@ public class UserService implements IUserService {
         if (money < 0){
             throw new Exception("余额不够，请联系管理员充值");
         }
-//        borrowDao.updateBuyEd();
         userdao.buying(money,userBorrowRequest.getStuname(),userBorrowRequest.getStunumber());
         return true;
     }
